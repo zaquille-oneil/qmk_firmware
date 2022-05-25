@@ -13,6 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+// #include "print.h"
 
 #if defined(RGB_BACKLIGHT_ZEAL60) || \
     defined(RGB_BACKLIGHT_ZEAL65) || \
@@ -2068,6 +2069,7 @@ void backlight_effect_all_off(void)
 void backlight_effect_solid_color(void)
 {
     HSV hsv = { .h = g_config.color_1.h, .s = g_config.color_1.s, .v = g_config.brightness };
+    // xprintf("hue: %u, sat: %u\n", (unsigned int)g_config.color_1.h, (unsigned int)g_config.color_1.s);
     RGB rgb = hsv_to_rgb( hsv );
     backlight_set_color_all( rgb.r, rgb.g, rgb.b );
 }
@@ -2440,7 +2442,7 @@ void backlight_effect_indicators(void)
     // still the backlight configuration layer and we don't
     // want "all LEDs" indicators hiding the backlight effect,
     // but still allow end users to do whatever they want.
-    if ( IS_LAYER_ON(3) )
+    if ( IS_LAYER_ON(0) )
     {
         if ( g_config.layer_3_indicator.index != 255 )
         {
